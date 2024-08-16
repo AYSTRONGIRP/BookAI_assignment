@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap');
+        
+:root {
+--primary-color: #6366f1;
+--secondary-color: #a5b4fc;
+--background-color: #0f172a;
+--text-color: #e2e8f0;
+--highlight-color: #22d3ee;
+--code-background: #1e293b;
+--section-background: #1e293b;
+--border-color: #334155;
+}
+
+.light-mode {
+--background-color: #ffffff;
+--border-color: #cbd5e1;
+--highlight-color: #0e66f4;
+--primary-color: #6366f1;
+--secondary-color: #3b82f6;
+--section-background: #e2e8f0;
+--code-background: #f1f5f9;
+--text-color: #1e293b;
+}
+
+* {
+padding: 0;
+box-sizing: border-box;
+margin: 0;
+}
+
+body {
+background-color: var(--background-color);
+font-family: 'Inter', sans-serif;
+line-height: 1.6;
+color: var(--text-color);
+}
+
+header {
+padding: 2rem 0;
+background-color: var(--primary-color);
+text-align: center;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+color: #ffffff;
+font-size: 2.5rem;
+margin-bottom: 1rem;
+}
+
+h2, h3, h4 {
+color: var(--secondary-color);
+margin-top: 2rem;
+}
+
+nav {
+padding: 1rem 0;
+background-color: var(--section-background);
+position: sticky;
+}
+li {
+margin: 0.5rem 1rem;
+}
+
+nav ul {
+display: flex;
+justify-content: center;
+list-style-type: none;
+}
+
+nav ul li a {
+text-transform: uppercase;
+font-size: 0.9rem;
+transition: color 0.5s ease;
+text-decoration: none;
+color: var(--text-color);
+}
+
+nav ul li a:hover {
+color: var(--highlight-color);
+}
+
+main {
+padding: 0;
+margin: 2rem auto;
+max-width: 1000px;
+align-content: center;
+}
+
+section {
+padding: 2rem;
+background-color: var(--section-background);
+border-radius: 8px;
+border: 1px solid var(--border-color);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+}
+
+pre, code {
+font-family: 'Fira Code', monospace;
+padding: 1rem;
+font-size: 0.9rem;
+border-radius: 4px;
+overflow-x: auto;
+}
+
+pre {
+background-color: var(--code-background);
+border: 1px solid var(--border-color);
+}
+
+a:focus, button:focus, input:focus, textarea:focus {
+outline: 2px solid #005fcc;
+}
+
+table {
+border-radius: 8px;
+border: 1px solid var(--border-color);
+border-spacing: 0;
+overflow: hidden;
+margin-top: 1rem;
+width: 100%;
+}
+
+th, td {
+text-align: left;
+padding: 1rem;
+border-bottom: 1px solid var(--border-color);
+}
+
+th {
+background-color: var(--primary-color);
+color: #ffffff;
+font-size: 0.8rem;
+font-weight: 600;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+}
+
+.endpoint {
+display: inline-block;
+background-color: var(--primary-color);
+color: #ffffff;
+padding: 0.5rem 1rem;
+border-radius: 4px;
+font-weight: bold;
+margin-bottom: 1rem;
+}
+
+.http-method {
+background-color: var(--highlight-color);
+color: var(--background-color);
+padding: 0.25rem 0.5rem;
+border-radius: 4px;
+font-weight: bold;
+margin-right: 0.5rem;
+}
+
+.parameter-table td:first-child {
+font-weight: bold;
+color: var(--highlight-color);
+}
+
+button {
+border: none;
+background-color: var(--highlight-color);
+color: var(--background-color);
+border-radius: 4px;
+padding: 0.75rem 1.5rem;
+cursor: pointer;
+font-size: 1rem;
+font-weight: 600;
+transition: background-color 0.3s ease, transform 0.2s ease;
+margin-top: 1rem;
+}
+
+button:hover {
+background-color: #0ea5e9;
+transform: translateY(-2px);
+}
+
+#themeButton {
+position: fixed;
+right: 1rem;
+bottom: 1rem;
+height: 3rem;
+width: 3rem;
+border-radius: 50%;
+border: none;
+padding: 0 0.7em;
+z-index: 1000;}
+
+#apiKeyDisplay {
+background-color: var(--code-background);
+border: 1px solid var(--border-color);
+border-radius: 4px;
+font-family: 'Fira Code', monospace;
+margin-top: 1rem;
+padding: 1rem;
+word-break: break-all;
+}
+
+.code-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* z-index: 1000; */
+}
+
+.copy-btn:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 768px) {
+nav {
+position: relative;
+}
+
+nav ul {
+flex-direction: column;
+align-items: center;
+}
+
+nav ul li {
+margin: 0.5rem 0;
+}
+
+main {
+padding: 0 auto;
+font-size: 0.85rem;
+}
+
+section {
+padding: 1.5rem;
+}
+
+table, th, td {
+font-size: 0.85rem;
+}
+}
+
+@media (max-width: 466px) {
+table {
+display: block;
+overflow-x: auto;
+}
+}

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 id="main-heading">Book Generator API</h1>
+    </header>
+    
+    <nav aria-labelledby="main-heading">
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#authentication">Authentication</a></li>
+            <li><a href="#endpoints">Endpoints</a></li>
+            <li><a href="#tutorial">Tutorial</a></li>
+            <li><a href="#code-examples">Code Examples</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+    </nav>
+    
+    <main aria-labelledby="main-heading">
+        <button onclick="toggleDarkMode()" id="themeButton" aria-label="Toggle Dark Mode">
+            <svg width="30" height="30" id="light-icon" aria-hidden="true">
+                <circle cx="15" cy="15" r="6" fill="currentColor" />
+                <line id="ray" stroke="currentColor" stroke-width="2" stroke-linecap="round" x1="15" y1="1" x2="15" y2="4"></line>
+                <use href="#ray" transform="rotate(45 15 15)" />
+                <use href="#ray" transform="rotate(90 15 15)" />
+                <use href="#ray" transform="rotate(135 15 15)" />
+                <use href="#ray" transform="rotate(180 15 15)" />
+                <use href="#ray" transform="rotate(225 15 15)" />
+                <use href="#ray" transform="rotate(270 15 15)" />
+                <use href="#ray" transform="rotate(315 15 15)" />
+            </svg>
+    
+            <svg width="30" height="30" id="dark-icon" aria-hidden="true">
+                <path fill="currentColor" d="M 23, 5 A 12 12 0 1 0 23, 25 A 12 12 0 0 1 23, 5" />
+            </svg>
+        </button>
+    
+        <section id="overview" aria-labelledby="overview-heading">
+            <h2 id="overview-heading">Overview</h2>
+            <p>The Book Generator API allows you to generate books on various topics using different language models. This documentation provides details on how to use the API, including authentication, available endpoints, and code examples.</p>
+        </section>
+    
+        <section id="authentication" aria-labelledby="authentication-heading">
+            <h2 id="authentication-heading">Authentication</h2>
+            <p>To use the API, you need to include your API key in the header of each request:</p>
+            <pre><code>X-API-Key: YOUR_API_KEY</code></pre>
+            <p>To generate an API key, use the button below:</p>
+            <button id="generateApiKey" aria-describedby="apiKeyInfo">Generate API Key</button>
+            <div id="apiKeyDisplay" aria-live="polite"></div>
+            <p id="apiKeyInfo" class="visually-hidden">Click the button to generate an API key. The generated key will be displayed above.</p>
+        </section>
+    
+        <section id="endpoints" aria-labelledby="endpoints-heading">
+            <h2 id="endpoints-heading">Endpoints</h2>
+            <h3 id="generate-book-heading">Generate Book</h3>
+            <p><span class="http-method" aria-label="POST request">POST</span> <span class="endpoint">/api/generate-book</span></p>
+            <h4 id="request-body-heading">Request Body</h4>
+            <table class="parameter-table" role="table" aria-labelledby="request-body-heading">
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api</td>
+                        <td>string</td>
+                        <td>The API provider to use. Options: "openai" or "together"</td>
+                    </tr>
+                    <tr>
+                        <td>model</td>
+                        <td>string</td>
+                        <td>The specific model to use (e.g., "gpt-3.5-turbo", "gpt-4", "llama-2-70b")</td>
+                    </tr>
+                    <tr>
+                        <td>topic</td>
+                        <td>string</td>
+                        <td>The main topic or theme of the book</td>
+                    </tr>
+                    <tr>
+                        <td>language</td>
+                        <td>string</td>
+                        <td>The language in which the book should be generated</td>
+                    </tr>
+                    <tr>
+                        <td>word_count</td>
+                        <td>integer</td>
+                        <td>The approximate number of words for the generated book</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 id="response-heading">Response</h4>
+            <pre><code>{
+        "message": "Book generation started",
+        "status": "processing",
+        "job_id": "unique-job-identifier"
+    }</code></pre>
+    </section>
+    
+        <section id="tutorial" aria-labelledby="tutorial-heading">
+            <h2 id="tutorial-heading">Tutorial</h2>
+            <h3>Step 1: Obtain an API Key</h3>
+            <p>Generate an API key using the button in the Authentication section above.</p>
+            
+            <h3>Step 2: Make a Request</h3>
+            <p>Use your preferred programming language or tool to make a POST request to the /api/generate-book endpoint. Include your API key in the header and the required parameters in the request body.</p>
+            
+            <h3>Step 3: Handle the Response</h3>
+            <p>The API will return a response with a job ID. You can use this ID to check the status of your book generation job.</p>
+            
+            <h3>Step 4: Retrieve the Generated Book</h3>
+            <p>Once the job is complete, you can retrieve the generated book using the job ID (endpoint to be implemented).</p>
+        </section>
+    
+        <section id="code-examples" aria-labelledby="code-examples-heading">
+            <h2 id="code-examples-heading">Code Examples</h2>
+            <h3>Python</h3>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyToClipboard('python-code')">Copy</button>
+                <pre><code id="python-code">import requests
+            
+            API_KEY = "your_api_key_here"
+            API_ENDPOINT = "https://tryBookAI.com/api/generate-book"
+            
+            headers = {
+                "Content-Type": "application/json",
+                "X-API-Key": API_KEY
+            }
+            
+            data = {
+                "api": "openai",
+                "model": "gpt-3.5-turbo",
+                "topic": "The Future of Artificial Intelligence",
+                "language": "English",
+                "word_count": 5000
+            }
+            
+            response = requests.post(API_ENDPOINT, json=data, headers=headers)
+            
+            if response.status_code == 200:
+                result = response.json()
+                print(f"Book generation started. Job ID: {result['job_id']}")
+            else:
+                print(f"Error: {response.status_code} - {response.text}")
+            </code></pre>
+            </div>
+
+            <h3>JavaScript (Node.js)</h3>
+        <div class="code-container">
+            <button class="copy-btn" onclick="copyToClipboard('js-code')">Copy</button>
+            <pre><code id="js-code">const axios = require('axios');
+        
+        const API_KEY = 'your_api_key_here';
+        const API_ENDPOINT = 'https://tryBookAI.com/api/generate-book';
+        
+        const headers = {
+            'Content-Type': 'application/json',
+            'X-API-Key': API_KEY
+        };
+        
+        const data = {
+            api: 'openai',
+            model: 'gpt-3.5-turbo',
+            topic: 'The Future of Artificial Intelligence',
+            language: 'English',
+            word_count: 5000
+        };
+        
+        axios.post(API_ENDPOINT, data, { headers })
+            .then(response => {
+                console.log(`Book generation started. Job ID: ${response.data.job_id}`);
+            })
+            .catch(error => {
+                console.error(`Error: ${error.response.status} - ${error.response.data}`);
+            });
+        </code></pre>
+        </div>
+        </section>
+        
+    
+        <section id="pricing" aria-labelledby="pricing-heading">
+            <h2 id="pricing-heading">API Pricing</h2>
+            <p>Our API pricing is based on the model used and the number of tokens processed. Here's a breakdown of the costs:</p>
+            <table role="table" aria-labelledby="pricing-heading">
+                <thead>
+                    <tr>
+                        <th scope="col">API</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Price per 1K tokens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>OpenAI</td>
+                        <td>GPT-3.5</td>
+                        <td>$0.002</td>
+                    </tr>
+                    <tr>
+                        <td>OpenAI</td>
+                        <td>GPT-4</td>
+                        <td>$0.03</td>
+                    </tr>
+                    <tr>
+                        <td>Together AI</td>
+                        <td>Llama-2-70b</td>
+                        <td>$0.0008</td>
+                    </tr>
+                    <tr>
+                        <td>Together AI</td>
+                        <td>Llama-2-13b</td>
+                        <td>$0.0006</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 id="token-estimation-heading">Token Estimation</h3>
+            <p>On average, 1 token is approximately 4 characters or 0.75 words. For precise pricing, we recommend using our token calculator tool.</p>
+            <h3 id="billing-heading">Billing</h3>
+            <p>You will only be charged for the tokens used in generating the book. The API tracks token usage and bills accordingly. Detailed usage reports are available in your account dashboard.</p>
+        </section>
+    </main>
+    <script>
+
+        const lightIcon = document.getElementById("light-icon");
+        const darkIcon = document.getElementById("dark-icon");
+
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme == 'light-mode') {
+            document.body.classList.add(currentTheme);
+            lightIcon.setAttribute("display", "none");
+            darkIcon.setAttribute("display", "block");
+        }else{
+            darkIcon.setAttribute("display", "none");
+            lightIcon.setAttribute("display", "block");
+        }
+
+        let darkMode = localStorage.getItem('theme');
+
+        function toggleDarkMode() {
+
+            document.body.classList.toggle("light-mode");
+            
+            let theme = 'dark-mode';
+            if (document.body.classList.contains('light-mode')) {
+                theme = 'light-mode';
+                lightIcon.setAttribute("display", "none");
+                darkIcon.setAttribute("display", "block");
+            }else{
+                darkIcon.setAttribute("display", "none");
+                lightIcon.setAttribute("display", "block");
+            }
+            localStorage.setItem('theme', theme);
+
+        }
+
+        document.getElementById('generateApiKey').addEventListener('click', function() {
+            const randomApiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            const apiKeyDisplay = document.getElementById('apiKeyDisplay');
+            apiKeyDisplay.innerHTML = `Your API Key: <strong>${randomApiKey}</strong>`;
+
+        });
+
+        function copyToClipboard(codeId) {
+        const codeElement = document.getElementById(codeId);
+        const codeText = codeElement.innerText;
+        navigator.clipboard.writeText(codeText).then(() => {
+            alert('Code copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy code: ', err);
+        });
+        }
+    </script>
+</body>
+</html>
